@@ -17,9 +17,10 @@ func main() {
 			os.Exit(1)
 		}
 		_, err = io.Copy(os.Stdout, resp.Body)
+		fmt.Printf("STATUS CODE: %d\n", resp.StatusCode)
 		resp.Body.Close()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: readings %s: %v\n", url, err)
+			fmt.Fprintf(os.Stderr, "fetch: readings %s: STATUS CODE: %d %v\n", url, resp.StatusCode, err)
 			os.Exit(1)
 		}		
 	}
